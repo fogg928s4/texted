@@ -14,6 +14,15 @@
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define TEXTED_VERSION "0.0.1a"
 
+enum editorKey {
+	//now well have to represent arrow key to not conflict w/ WASD
+	//we give large value out of char range to not conflict
+	ARROW_LEFT = 1000,
+	ARROW_RIGHT ,
+	ARROW_UP ,
+	ARROW_DOWN
+};
+
 /**append buffer**/
 //to write one big insted of small ones
 struct abuf {
@@ -63,13 +72,13 @@ char editorReadKey() {
 		//if it returns an actual arrow press, it returns its corresponding thingy
 			switch (seq[1]) {
 				case 'A':
-					return 'w';
+					return ARROW_UP; //instead of mapping to the char it maps to an special char in an enum
 				case 'B':
-					return 's';
+					return ARROW_DOWN;
 				case 'C':
-					return 'd';
+					return ARROW_RIGHT;
 				case 'D':
-					return 'a';
+					return ARROW_LEFT;
 			}
 		}
 		else
@@ -139,16 +148,17 @@ int getWindowSize(int *rows, int *cols) {
 
 void editorMoveCursor(char key) {
 	switch( key) {
-		case 'w':
+		//calls for the values in enum to get the arrow pressed.
+		case ARROW_UP:
 			E.cy--;
 			break;
-		case 'a':
+		case ARROW_LEFT:
 			E.cx--;
 			break;
-		case 's':
+		case ARROW_DOWN:
 			E.cy++;
 			break;
-		case 'd':
+		case ARROW_RIGHT:
 			E.cx++;
 			break;
 	}
@@ -168,10 +178,11 @@ void editorProcessKeypress() {
 			exit(0);
 			break;
 		
-		case 'w':
-		case 'a':
-		case 's':
-		case 'd':
+		case ARROW_UP:
+		case ARROW_LEFT:
+		case ARROW_DOWN:
+		case ARROW_RIGHT:
+		//if any of the direction are pressed, it calls for move cursor, else it doesnt
 			editorMoveCursor(c);
 			break;
 	}
