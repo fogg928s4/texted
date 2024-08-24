@@ -51,7 +51,7 @@ void abFree(struct abuf *ab) { //destructor
 /*** input ***/
 
 //reads the keyinput and returns it
-char editorReadKey() {
+int editorReadKey() {
 	
 	int nread;
 	char c;
@@ -146,7 +146,7 @@ int getWindowSize(int *rows, int *cols) {
 	}
 }
 
-void editorMoveCursor(char key) {
+void editorMoveCursor(int key) {
 	switch( key) {
 		//calls for the values in enum to get the arrow pressed.
 		case ARROW_UP:
@@ -168,7 +168,7 @@ void editorMoveCursor(char key) {
 //waits for a keypress and handles it, if its a q it exits
 //deals with low level termin input
 void editorProcessKeypress() {
-	char c = editorReadKey();
+	int c = editorReadKey();
 	
 	//to move with WASD or exit with CTRL Q
 	switch (c) {
