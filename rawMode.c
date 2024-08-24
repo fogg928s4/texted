@@ -11,6 +11,7 @@
 struct editorConfig {
 	struct termios orig_termios; //a struct type termios
 	int screenrows, screencols;
+	int cx,cy; //cursor position
 };
 
 struct editorConfig E;

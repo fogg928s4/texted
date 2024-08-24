@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include "rawMode.c"
 #include "textViewer.c"
 #include "rawInOut.c"
@@ -16,6 +17,8 @@
 
 /**** init ***/ 
 void initEditor() {
+	E.cx =0;
+	E.cy =0;
 	if(getWindowSize(&E.screenrows, &E.screencols) == -1 )
 		die("getWindowsSize");
 }
