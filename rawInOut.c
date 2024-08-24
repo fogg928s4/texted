@@ -198,7 +198,8 @@ void editorDrawRows(struct abuf *ab) {
 		if(y == E.screenrows /2) { //for pos
 			char welcome[80]; //interpolate the buffer into the welcome msg
 			int welcomelen = snprintf(welcome, sizeof(welcome), "TXT editor -- version %s", TEXTED_VERSION);
-			if(welcomelen > E.screencols)	welcomelen =E.screencols; //truncate if msg too long
+			if(welcomelen > E.screencols)	
+				welcomelen =E.screencols; //truncate if msg too long
 			
 			int padding = (E.screencols - welcomelen) /2; //center the text
 			//to center
