@@ -37,7 +37,8 @@ struct abuf {
 void abAppend(struct abuf *ab, const char *s, int len) { //constructor
 	char *new = realloc(ab->b, ab->len + len);
 	//reallocates space just enough fo rhte string
-	if(new == NULL) return;
+	if(new == NULL) 
+		return;
 	memcpy(&new[ab->len], s, len);
 	ab->b = new;
 	ab->len += len;//ads the len, othrwise no output generated
